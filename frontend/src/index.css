@@ -26,6 +26,7 @@ h2 {
 .carousel-item.active {
   display: flex;
 }
+
 .carousel-caption {
   position: absolute;
   top: 0;

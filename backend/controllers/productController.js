@@ -1,12 +1,13 @@
 import asyncHandler from "express-async-handler";
 import Product from "../models/productModel.js";
 
-// @desc    Fetch all products along with pagination for every 8 pages
+// @desc    Fetch all products along with pagination for every 4 pages
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 8;
+  const pageSize = 4;
   const page = Number(req.query.pageNumber) || 1;
+  const category = req.query.category;
 
   const keyword = req.query.keyword
     ? {
@@ -17,12 +18,19 @@ const getProducts = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const count = await Product.countDocuments({ ...keyword });
-  const products = await Product.find({ ...keyword })
-    .limit(pageSize)
-    .skip(pageSize * (page - 1));
-
-  res.json({ products, page, pages: Math.ceil(count / pageSize) });
+  if (category) {
+    const count = await Product.countDocuments({ ...keyword, category });
+    const products = await Product.find({ ...keyword, category })
+      .limit(pageSize)
+      .skip(pageSize * (page - 1));
+    res.json({ products, page, pages: Math.ceil(count / pageSize) });
+  } else {
+    const count = await Product.countDocuments({ ...keyword });
+    const products = await Product.find({ ...keyword })
+      .limit(pageSize)
+      .skip(pageSize * (page - 1));
+    res.json({ products, page, pages: Math.ceil(count / pageSize) });
+  }
 });
 
 // @desc    Fetch single product

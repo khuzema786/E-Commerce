@@ -1,6 +1,7 @@
 # Freeloader eCommerce Platform
 
 > eCommerce platform built with the MERN stack & Redux.
+ https://github.com/khuzema786/E-Commerce.git
 
 ## Features
 
@@ -99,7 +100,7 @@ jane@example.com (Customer)
 
 The MIT License
 
-Copyright (c) 2020 Traversy Media https://freeloader.com
+Copyright (c) 2020 Freeloader https://freeloader.tech
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

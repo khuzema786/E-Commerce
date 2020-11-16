@@ -83,8 +83,8 @@ const ProductEditScreen = ({ match, history }) => {
         name,
         price,
         image,
-        brand,
-        category,
+        brand: brand.toLowerCase(),
+        category: category.toLowerCase(),
         description,
         countInStock,
       })
@@ -168,11 +168,13 @@ const ProductEditScreen = ({ match, history }) => {
             <Form.Group controlId="category">
               <Form.Label>Category</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Enter category"
+                as="select"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-              ></Form.Control>
+              >
+                <option value="electronics">Electronics</option>
+                <option value="clothings">Clothings</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group controlId="description">
